@@ -4,7 +4,7 @@ let users = [
         lastName: "Azeem",
         age: 23,
         gender: "Female",
-        lastOrderDate: "01/01/2023",
+        lastOrderDate: "2023-01-01",
         totalOrder: 2
     },
     {
@@ -12,7 +12,7 @@ let users = [
         lastName: "Bashir",
         age: 23,
         gender: "Female",
-        lastOrderDate: "02/01/2023",
+        lastOrderDate: "2023-01-04",
         totalOrder: 11
     },
     {
@@ -20,7 +20,7 @@ let users = [
         lastName: "Naz",
         age: 24,
         gender: "Female",
-        lastOrderDate: "05/01/2023",
+        lastOrderDate: "2022-01-11",
         totalOrder: 5
     },
     {
@@ -28,7 +28,7 @@ let users = [
         lastName: "Faisal",
         age: 25,
         gender: "Female",
-        lastOrderDate: "11/01/2023",
+        lastOrderDate: "2023-04-01",
         totalOrder: 5
     },
     {
@@ -36,46 +36,46 @@ let users = [
         lastName: "Azeem",
         age: 20,
         gender: "Male",
-        lastOrderDate: "22/01/2023",
+        lastOrderDate: "2023-03-01",
         totalOrder: 6
     }, {
         firstName: "Farhan",
         lastName: "Azeem",
         age: 27,
         gender: "Male",
-        lastOrderDate: "29/01/2023",
+        lastOrderDate: "2023-05-01",
         totalOrder: 13
     }, {
         firstName: "Baria",
         lastName: "Nasir",
         age: 24,
         gender: "Female",
-        lastOrderDate: "29/08/2022",
+        lastOrderDate: "2022-01-01",
         totalOrder: 14
     }, {
         firstName: "Fatima",
         lastName: "Nasir",
         age: 29,
         gender: "Female",
-        lastOrderDate: "29/04/2022",
+        lastOrderDate: "2022-05-01",
         totalOrder: 26
     }, {
         firstName: "Ramsha",
         lastName: "Malik",
         age: 23,
         gender: "Female",
-        lastOrderDate: "29/12/2022",
+        lastOrderDate: "2023-06-01",
         totalOrder: 22
     }, {
         firstName: "Shanzay",
         lastName: "Gul",
         age: 23,
         gender: "Female",
-        lastOrderDate: "29/09/2022",
+        lastOrderDate: "2023-07-01",
         totalOrder: 5
     }
 ]
-/*
+
 //Q1: add 1 to all ages
 let addedAges = users.map(add1ToAges = (element) => {
     return element.age + 1;
@@ -113,12 +113,9 @@ console.log(TotalOrder);
 
 //Q5: sort array by last Order date
 console.log(users.sort((first, second) => {
-    //let firstDate = new Date(first.lastOrderDate),
-    //secondDate = new Date(second.lastOrderDate);
-   // return firstDate - secondDate;
-    return second.lastOrderDate - first.totalOrder;
+    return Date.parse(first.lastOrderDate) - Date.parse(second.lastOrderDate);
 }));
-*/
+
 //Q6: sort array in descending order of totalorders
 console.log(users.sort((first, second) => {
     return second.totalOrder - first.totalOrder;
