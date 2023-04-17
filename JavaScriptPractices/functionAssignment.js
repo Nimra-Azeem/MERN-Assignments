@@ -58,7 +58,7 @@ let users = [
         age: 29,
         gender: "Female",
         lastOrderDate: "29/04/2022",
-        totalOrder: 22
+        totalOrder: 26
     }, {
         firstName: "Ramsha",
         lastName: "Malik",
@@ -91,3 +91,14 @@ let filteredArrayFunction = (users, num) => {
 }
 let filteredUsers = filteredArrayFunction(users, 15);
 console.log(filteredUsers);
+
+//Q3: First user with orders greater than a given number
+let findArrayFunction = (users, num) =>{
+    let findCallback = (element) => {
+        return(element.totalOrder> num ? true : false);
+    }
+    return users.filter(findCallback);
+}
+let firstUserwithGreaterOrders = findArrayFunction(users, 25);
+console.log(firstUserwithGreaterOrders);
+
