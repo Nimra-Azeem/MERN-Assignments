@@ -75,6 +75,7 @@ let users = [
         totalOrder: 5
     }
 ]
+/*
 //Q1: add 1 to all ages
 let addedAges = users.map(add1ToAges = (element) => {
     return element.age + 1;
@@ -108,4 +109,17 @@ let addOrders = (total, num) => {
     return total + num.totalOrder;
 }
 let TotalOrder = users.reduce(addOrders, 0);
-    console.log(TotalOrder);
+console.log(TotalOrder);
+
+//Q5: sort array by last Order date
+console.log(users.sort((first, second) => {
+    //let firstDate = new Date(first.lastOrderDate),
+    //secondDate = new Date(second.lastOrderDate);
+   // return firstDate - secondDate;
+    return second.lastOrderDate - first.totalOrder;
+}));
+*/
+//Q6: sort array in descending order of totalorders
+console.log(users.sort((first, second) => {
+    return second.totalOrder - first.totalOrder;
+}));
