@@ -83,7 +83,7 @@ console.log(addedAges);
 
 //Q2 : returns array of all users with total order greater than a number
 let filteredArrayFunction = (users, num) => {
-   
+
     let filterCallback = (element) => {
         return (element.totalOrder > num ? true : false);
     }
@@ -93,12 +93,19 @@ let filteredUsers = filteredArrayFunction(users, 15);
 console.log(filteredUsers);
 
 //Q3: First user with orders greater than a given number
-let findArrayFunction = (users, num) =>{
+let findArrayFunction = (users, num) => {
     let findCallback = (element) => {
-        return(element.totalOrder> num ? true : false);
+        return (element.totalOrder > num ? true : false);
     }
     return users.filter(findCallback);
 }
 let firstUserwithGreaterOrders = findArrayFunction(users, 25);
 console.log(firstUserwithGreaterOrders);
 
+//Q4: total orders of all users
+
+let addOrders = (total, num) => {
+    return total + num.totalOrder;
+}
+let TotalOrder = users.reduce(addOrders, 0);
+    console.log(TotalOrder);
