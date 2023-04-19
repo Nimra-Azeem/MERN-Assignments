@@ -21,7 +21,7 @@ let shirts = [
         fabric: "Jeans"
     }
 ]
-
+/*
 //to create new object
 let newShirt = {
         id: 4,
@@ -68,14 +68,37 @@ updateObject(3,changeShirt);
 
 //Delete Object Function
 const deleteObject = (shirts, deleteIndex) => {
-        const CallBackFunction = (array) => {
-            if (array.id == deleteIndex) {
-                shirts.splice(deleteIndex, 1);
-                return true;
-            }
-            return false;
+    const CallBackFunction = (array) => {
+        if (array.id == deleteIndex) {
+            shirts.splice(deleteIndex, 1);
+            return true;
         }
-        return shirts.find(CallBackFunction);
+        return false;
     }
+    return shirts.find(CallBackFunction);
+}
 deleteObject(shirts,2);
 console.log(shirts);
+*/
+const longestString = (s) => {
+    let result, temp;
+    if (s.length > 0) {
+        for (let i = 0; i < s.length; i++) {
+            if (i == 0) {
+                temp = s[i];
+                result = temp;
+            }
+            else if (result.includes(s[i]) != 1) {
+                temp = temp + s[i];
+                result = temp;
+            }
+            else {
+                temp = s[i];
+            }
+        }
+    }
+    if()
+    return result.length;
+}
+const word1 = "";
+console.log(longestString(word1));
