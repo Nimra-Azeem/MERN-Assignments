@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Counter Button</title>
+</head>
+<body>
+    <h1>Counter button</h1><br/>
+    <form>
+        <p id = "counterValue"></p><br/>
+        <button onclick="Counter()" type="button">Count</button>
+        <button onclick="Reset()" type = "button">Reset</button>
+    </form>
+    <script>
+        let count = 0;
+        let CounterFunc = () =>{
+            return count = count+1;
+    }
+    let Counter= () =>{
+  document.getElementById("counterValue").innerHTML = CounterFunc();
+}
+    let Reset = () =>{
+        count = 0;
+    document.getElementById("counterValue").innerHTML=count; 
+}
+</script>
+</body>
+</html>
