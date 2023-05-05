@@ -13,12 +13,21 @@ let ItemsList = () => {
     const [priority, setPriority] = useState("");
     const [createdAt] = useState(Date.now());
     const [updatedAt, setUpdatedAt] = useState("");
-    
+
+    // const EditTask = (props) => {
+    //     document.getElementById('title').value = props.title;
+    //     document.getElementById('description').value = props.description;
+    //     document.getElementById('priority').value = props.priority;
+    // }
     const allTasks = list.map((element) => {
         return (
-            <li><p>{element.title},{element.description},{element.datetime}</p></li>
+            <li><p>{element.title},{element.description},{element.datetime},{element.priority}</p>
+                <button >Edit</button></li>
         )
     });
+
+    // useEffect(() => {
+    //     setlist(ItemsList)},[ItemsList]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -33,7 +42,14 @@ let ItemsList = () => {
         }
         ItemsList.push(obj);
         setlist(ItemsList);
+        // setTitle("");
+        // setDescription("");
+        // setPriority(1);
+        // document.getElementById('title').value = title;
+        // document.getElementById('description').value = description;
+        // document.getElementById('priority').value = priority;
     };
+
 
     return (
         <div>
@@ -44,9 +60,9 @@ let ItemsList = () => {
             <h2>Add New Task</h2>
 
             <form onSubmit={handleSubmit}>
-                <label>Task Title</label><input type="text" onChange={(e) => { setTitle(e.target.value); }} /><br /><br />
-                <label>Task Description</label><input type="text" onChange={(e) => { setDescription(e.target.value); }} /><br /><br />
-                <label>Task DateTime: </label><input type="datetime-local" onChange={(e) => { setDatetime(e.target.value); }} /><br /><br />
+                <label>Task Title</label><input type="text" id="title" onChange={(e) => { setTitle(e.target.value); }} /><br /><br />
+                <label>Task Description</label><input type="text" id="description" onChange={(e) => { setDescription(e.target.value); }} /><br /><br />
+                <label>Task DateTime: </label><input type="datetime-local" id="dateTime" onChange={(e) => { setDatetime(e.target.value); }} /><br /><br />
                 <label for="priority"> Select priority: </label>
                 <select id="priority" name="priority" onChange={(e) => { setPriority(e.target.value); }}>
                     <option value="1">1</option>
@@ -57,6 +73,7 @@ let ItemsList = () => {
                 </select><br /><br />
                 <input type="submit" value="Add Task" />
             </form>
+
         </div>
     );
 }
