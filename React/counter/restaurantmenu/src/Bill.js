@@ -12,10 +12,6 @@ let Bill = () => {
     const [totalBill, settotalBill] = useState(0);
     const [userCount, setuserCount] = useState(0);
     const [addToBill, setaddToBill] = useState("");
-    const [datetime, setDatetime] = useState("");
-    const [priority, setPriority] = useState("");
-    const [createdAt] = useState(Date.now());
-    const [updatedAt, setUpdatedAt] = useState("");
 
     const allItems = ItemsList.map((element) => {
         return (
@@ -35,14 +31,23 @@ let Bill = () => {
             <li>User {userCount}       $ {element.bill}</li>
         )
     });
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        
+    const handleSubmit = (obj) => {
+        obj.preventDefault();
+        const output = (obj? "Name":"End")
+       const newobj = {
+        id : "item" + {userCount},
+        name: obj.name,
+        addToBill:obj,
+        quantity:1,
+        price:1
+       }
+       console.log("New Object ==>" ,{newobj});
+    setuserCount(userCount+1);
     };
-    useEffect(() => {
-        console.log("Added Item");
+    // useEffect(() => {
+    //     console.log("Added Item");
 
-    },addToBill)
+    // },addToBill)
 
     return (
         <div>
