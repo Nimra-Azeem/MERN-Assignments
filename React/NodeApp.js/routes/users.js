@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
     try {
         newdata = fs.writeFileSync('./routes/users.txt', data);
         writedata = fs.readFileSync('./routes/users.txt', 'utf8');
+        writedata = JSON.parse(writedata);
         console.log(data);
     } catch (err) {
         console.error(err);
@@ -21,11 +22,41 @@ router.get('/', (req, res) => {
     res.send(writedata);
 })
 
-router.post('/', (req, res) => {
+const handler = (req, res) => {
+
     const user = req.body;
     users.push({ ...user, id: uuidv4() });
     res.send(`User with the name ${user.firstName} added to the database!`);
-});
+}
+
+const userMiddleware = (req, res, next) => {
+
+	const schema = Joi.object().keys({
+		firstName: Joi.string().required(),
+		lastName: Joi.string().required()
+	});
+
+	const { value, error } = Joi.compile(schema)
+		.prefs({ errors: { label: 'key' }, abortEarly: false })
+		.validate(req.body);
+
+	const valid = error == null;
+
+	console.log("valid? ===> ", valid);
+
+	if (!valid) {
+		console.log("Validation failed");
+		let resObject = {
+			status: 400,
+			msg: "Validation failed"
+		}
+		res.send(resObject)
+	} else {
+		next()
+	}
+}
+
+router.post('/',userMiddleware, handler);
 
 router.get('/:id', (req, res) => {
     const { id } = req.params;
