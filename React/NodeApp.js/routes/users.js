@@ -2,9 +2,15 @@ import express from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import path from 'path';
 import fs from 'fs';
+import bodyParser from 'body-parser';
+import Joi from 'joi';
 
 const router = express.Router();
+
+router.use(bodyParser.urlencoded({ extended: false }))
+router.use(bodyParser.json());
 const users = []
+
 router.get('/', (req, res) => {
     console.log(users);
     let data1 = [...users];
@@ -23,40 +29,39 @@ router.get('/', (req, res) => {
 })
 
 const handler = (req, res) => {
-
     const user = req.body;
     users.push({ ...user, id: uuidv4() });
     res.send(`User with the name ${user.firstName} added to the database!`);
 }
-
+let resObject
 const userMiddleware = (req, res, next) => {
 
-	const schema = Joi.object().keys({
-		firstName: Joi.string().required(),
-		lastName: Joi.string().required()
-	});
+    const schema = Joi.object().keys({
+        firstName: Joi.string().required(),
+        lastName: Joi.string().required()
+    });
 
-	const { value, error } = Joi.compile(schema)
-		.prefs({ errors: { label: 'key' }, abortEarly: false })
-		.validate(req.body);
+    const { value, error } = Joi.compile(schema)
+        .prefs({ errors: { label: 'key' }, abortEarly: false })
+        .validate(req.body);
 
-	const valid = error == null;
+    const valid = error == null;
 
-	console.log("valid? ===> ", valid);
+    console.log("valid? ===> ", valid);
 
-	if (!valid) {
-		console.log("Validation failed");
-		let resObject = {
-			status: 400,
-			msg: "Validation failed"
-		}
-		res.send(resObject)
-	} else {
-		next()
-	}
+    if (!valid) {
+        console.log("Validation failed");
+        resObject = {
+            status: 400,
+            msg: "Validation failed"
+        }
+        res.send(resObject)
+    } else {
+        next()
+    }
 }
 
-router.post('/',userMiddleware, handler);
+router.post('/', userMiddleware, handler);
 
 router.get('/:id', (req, res) => {
     const { id } = req.params;
